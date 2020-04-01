@@ -1,0 +1,10 @@
+{
+  "devToolsPort": 19002,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 6892,
+  "expoServerNgrokUrl": "https://c9-xir.anonymous.apireact.exp.direct",
+  "packagerNgrokUrl": "https://packager.c9-xir.anonymous.apireact.exp.direct",
+  "ngrokPid": 1876,
+  "webpackServerPort": 19006
+}
