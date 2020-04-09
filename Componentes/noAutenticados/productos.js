@@ -6,7 +6,7 @@ import {StackNavigator} from 'react-navigation';
 
 
 
-export default class App extends React.Component {
+export default class Productos extends React.Component {
 
   render(){
     return (
