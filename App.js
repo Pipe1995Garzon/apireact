@@ -1,50 +1,54 @@
-import React from 'react';
-import { StyleSheet, Text, View,TextInput,Button,Image } from 'react-native';
-//import {rutasnoautenticadas} from './Componentes/noAutenticados/rutasnoautenticadas'
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <View style={styles.uno}>
-        <Image source={{uri: 'https://ichef.bbci.co.uk/news/320/cpsprodpb/15665/production/_107435678_perro1.jpg'}}
-       style={{width: 150, height: 150}} />
-        <Text>  Veterinaria my dogs  </Text>
-      </View>
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View, TextInput, Button, Image, FlatList } from 'react-native';
+export default class App extends Component<Props> {
 
-      <View style={styles.dos}>
-        <Text> usuario </Text>
-        <TextInput  id="usuario"/>
-        <Text> clave </Text>
-        <TextInput  id="clave"/>
-        <Button title="Ingresar" />
-      </View>
+  state ={
+    data:[]
+  }
+
+  fetchData= async()=>{
+    //const response = await fetch('http://192.168.56.1:3000/');
+    const response = await fetch('http://localhost:3000/');
+    const principal = await response.json();
+    console.log(response);
+    console.log(principal);
 
 
-    <View style={styles.tres}>
-      <Text>footer</Text>
-    </View>
+    this.setState({data:principal});
 
-  </View>
-  );
+  }
+componentDidMount(){
+  this.fetchData();
+    console.log('holiss');
 }
 
+  render() {
+    return (
+      <View>
+       <Text>My dogs</Text>
+
+         <FlatList data={this.state.data} keyExtractor={(item,index) => index.toString()}
+          renderItem={({item}) =>
+          <View>
+            <Text>{item.mensaje1}</Text>
+            <Text>{item.mensaje2}</Text>
+            <Text>hola</Text>
+           </View>
+
+         }
+         />
+      </View>
+
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
-     flex: 1
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+
   },
-  uno:{
-     flex: 2,
-     justifyContent: "center",
-     alignItems: "center"
-  },
-  dos:{
-    flex: 2,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  tres:{
-    flex: 2,
-    justifyContent: "center",
-    alignItems: "center"
-  }
 });
